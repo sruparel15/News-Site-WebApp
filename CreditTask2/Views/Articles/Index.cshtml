@@ -1,0 +1,72 @@
+﻿@model IEnumerable<CreditTask2.Models.Article>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<body style="margin-left:0px; font-size:small;">
+    <div class="jumbotron" style="margin-left:5px">
+        <h2>Articles List</h2>
+
+        <p>
+            @Html.ActionLink("Add New", "Create")
+            <br/>
+            <br/>
+            @Html.ActionLink("Articles - Bar Graph", "Chart", "Articles", null, new { @class = "btn btn-info" })
+              
+        <div> @Html.ActionLink("PDF", "ExportPDF", "Articles", null, new { @class = "btn btn-info" }) </div> <br />
+        </p>
+        <table id="example" class="table table-hover table-striped" style="border:double; font-size:small;">
+            <thead>
+                <tr style="border-bottom:double;">
+                    <th>
+                        @Html.DisplayNameFor(model => model.articleDate)
+
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.articleTopic)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.articleTitle)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.articleDesc)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Journalist.journFname)
+                    </th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+            {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.articleDate)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.articleTopic)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.articleTitle)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.articleDesc)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Journalist.journFname)
+                        </td>
+                        <td>
+                            @Html.ActionLink("Edit", "Edit", new { id = item.articleId }) |
+                            @Html.ActionLink("Details", "Details", new { id = item.articleId }) |
+                            @Html.ActionLink("Delete", "Delete", new { id = item.articleId })
+                        </td>
+                    </tr>
+                }
+            </tbody>
+      
+</table>
+    </div>
+</body>

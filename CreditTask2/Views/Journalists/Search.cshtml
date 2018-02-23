@@ -1,0 +1,105 @@
+﻿@model IEnumerable<CreditTask2.Models.Journalist>
+@{
+    ViewBag.Title = "Search";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<div style="font-family:Arial">
+    <div class="jumbotronSpl" style="margin-left:5px">
+        <h2>Search Journalists</h2>
+
+        <div class="form-horizontal">
+            <p align="center">
+
+            <p>
+                @using (Html.BeginForm("Search", "Journalists", FormMethod.Get))
+                {
+                    <b>Search By: </b>@Html.RadioButton("SearchBy", "Name") <Text><b> Name</b></Text>
+                    @Html.RadioButton("SearchBy", "City") <text>  <b>City</b></text>
+                    @Html.RadioButton("SearchBy", "Email") <text> <b>Email</b> </text>
+                    @Html.RadioButton("SearchBy", "All") <text><b>All</b>  </text>
+                    @Html.TextBox("search") <input type="submit" value="Search" />
+                }
+            </p>
+            <table border="1" class="table table-hover table-striped" style="border:double; font-size:small">
+
+                <tr>
+                    <th>
+                        @Html.DisplayNameFor(model => model.journFname)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.JournLname)
+                    </th>
+
+                    <th>
+                        @Html.DisplayNameFor(model => model.journDOB)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.journContact)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.journEmail)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.journCity)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Journalist_Image)
+                    </th>
+
+
+
+                    <th></th>
+                </tr>
+                @if (Model.Count() == 0)
+                {
+                    <tr>
+
+                        <td colspan="7"><b><font color="blue">No Rows Matched the search Criteria</font></b></td>
+                    </tr>
+                }
+                else
+                {
+
+                    <tbody>
+
+                        @foreach (var item in Model)
+                        {
+                            <tr>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.journFname)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.JournLname)
+                                </td>
+
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.journDOB)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.journContact)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.journEmail)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.journCity)
+                                </td>
+                                
+                                <td>
+
+                                    <img class="img-thumbnail" src='@Url.Content("~/Uploads/" + item.Journalist_Image)' height="100" width="100" />
+
+                                </td>
+
+
+                            </tr>
+
+                        }
+                    </tbody>
+                }
+            </table>
+        </div>
+    </div>
+</div>

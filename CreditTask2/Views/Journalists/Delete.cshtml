@@ -1,0 +1,81 @@
+﻿@model CreditTask2.Models.Journalist
+
+@{
+    ViewBag.Title = "Delete";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<body style="margin-left:0px">
+    <div class="jumbotronSpl" style="margin-left:5px">
+       
+
+        <h2>Delete</h2>
+        <div class="form-horizontal">
+            <h3>Journalist</h3>
+            <div>
+                <h4 style="color:red;">Are you sure you want to delete this?</h4>
+                <hr />
+                <dl class="dl-horizontal">
+                    <dt>
+                        @Html.DisplayNameFor(model => model.journFname)
+                    </dt>
+
+                    <dd>
+                        @Html.DisplayFor(model => model.journFname)
+                    </dd>
+
+                    <dt>
+                        @Html.DisplayNameFor(model => model.JournLname)
+                    </dt>
+
+                    <dd>
+                        @Html.DisplayFor(model => model.JournLname)
+                    </dd>
+
+                    <dt>
+                        @Html.DisplayNameFor(model => model.journDOB)
+                    </dt>
+
+                    <dd>
+                        @Html.DisplayFor(model => model.journDOB)
+                    </dd>
+
+                    <dt>
+                        @Html.DisplayNameFor(model => model.journContact)
+                    </dt>
+
+                    <dd>
+                        @Html.DisplayFor(model => model.journContact)
+                    </dd>
+
+                    <dt>
+                        @Html.DisplayNameFor(model => model.journEmail)
+                    </dt>
+
+                    <dd>
+                        @Html.DisplayFor(model => model.journEmail)
+                    </dd>
+
+                    <dt>
+                        @Html.DisplayNameFor(model => model.journCity)
+                    </dt>
+
+                    <dd>
+                        @Html.DisplayFor(model => model.journCity)
+                    </dd>
+
+                </dl>
+
+
+                @using (Html.BeginForm())
+            {
+                    @Html.AntiForgeryToken()
+
+                    <div class="form-actions no-color">
+                        <input type="submit" value="Delete" class="btn btn-default" /> |
+                        @Html.ActionLink("Back to List", "Index")
+                    </div>
+                }
+            </div>
+            </div>
+        </div>
+</body>

@@ -1,0 +1,31 @@
+﻿@{
+    ViewBag.Title = "Feedback";
+}
+
+
+<h3>Feedback Page</h3>
+@Html.ActionLink("Got a Feedback?", "Create", "Feedbacks", null, new { @class = "btn btn-info" })
+<br/>
+<br/>
+<br/>
+<br/>
+<br />
+
+
+@* CSS *@
+<link href="~/css/bootstrap.css" rel="stylesheet" />
+<link href="~/css/jquery.dataTables.min.css" rel="stylesheet" />
+@* JS for angularJS and Datatable *@
+<script src="~/Scripts/jquery.js"></script>
+<script src="~/Scripts/jquery.dataTables.js"></script>
+<script src="~/Scripts/angular.js"></script>
+<script src="~/Scripts/angular-datatables.js"></script>
+@* JS for our angularjs module, controller etc. *@
+<script src="~/Scripts/myApp.js"></script>
+@* HTML *@
+
+<div ng-app="MyApp" class="container">
+    <div ng-controller="homeCtrl">
+        <table id="entry-grid" datatable="" dt-options="dtOptions" dt-columns="dtColumns" class="table table-hover table-striped" style="border:double"></table>
+    </div>
+</div>

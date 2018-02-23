@@ -1,0 +1,66 @@
+﻿@model CreditTask2.Models.Article
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<body style="margin-left:0px">
+    <div class="jumbotronSpl" style="margin-left:5px">
+
+        <h2>Details</h2>
+
+        <div class="form-horizontal">
+            <h4>Articles</h4>
+            <hr />
+            <br />
+            <br />
+            <dl class="dl-horizontal">
+                <dt>
+                    @Html.DisplayNameFor(model => model.articleDate)
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.articleDate)
+                </dd>
+
+                <dt>
+                    @Html.DisplayNameFor(model => model.articleTopic)
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.articleTopic)
+                </dd>
+
+                <dt>
+                    @Html.DisplayNameFor(model => model.articleTitle)
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.articleTitle)
+                </dd>
+
+                <dt>
+                    @Html.DisplayNameFor(model => model.articleDesc)
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.articleDesc)
+                </dd>
+
+                <dt>
+                    @Html.DisplayNameFor(model => model.Journalist.journFname)
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.Journalist.journFname)
+                </dd>
+
+            </dl>
+        </div>
+        <p>
+            @Html.ActionLink("Edit", "Edit", new { id = Model.articleId }) |
+            @Html.ActionLink("Back to List", "Index")
+        </p>
+    </div>
+</body>

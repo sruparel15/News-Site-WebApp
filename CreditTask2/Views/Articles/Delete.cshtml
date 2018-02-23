@@ -1,0 +1,73 @@
+﻿@model CreditTask2.Models.Article
+
+@{
+    ViewBag.Title = "Delete";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<body style="margin-left:0px">
+    <div class="jumbotronSpl" style="margin-left:5px">
+
+
+        <h2>Delete</h2>
+        <div class="form-horizontal">
+            <h3>Articles</h3>
+            <div>
+                <h4 style="color:red;">Are you sure you want to delete this?</h4>
+                <hr />
+                <dl class="dl-horizontal">
+                    <dt>
+                        @Html.DisplayNameFor(model => model.articleDate)
+                    </dt>
+
+                    <dd>
+                        @Html.DisplayFor(model => model.articleDate)
+                    </dd>
+
+                    <dt>
+                        @Html.DisplayNameFor(model => model.articleTopic)
+                    </dt>
+
+                    <dd>
+                        @Html.DisplayFor(model => model.articleTopic)
+                    </dd>
+
+                    <dt>
+                        @Html.DisplayNameFor(model => model.articleTitle)
+                    </dt>
+
+                    <dd>
+                        @Html.DisplayFor(model => model.articleTitle)
+                    </dd>
+
+                    <dt>
+                        @Html.DisplayNameFor(model => model.articleDesc)
+                    </dt>
+
+                    <dd>
+                        @Html.DisplayFor(model => model.articleDesc)
+                    </dd>
+
+                    <dt>
+                        @Html.DisplayNameFor(model => model.Journalist.journFname)
+                    </dt>
+
+                    <dd>
+                        @Html.DisplayFor(model => model.Journalist.journFname)
+                    </dd>
+
+                </dl>
+
+                @using (Html.BeginForm())
+                {
+                    @Html.AntiForgeryToken()
+
+                    <div class="form-actions no-color">
+                        <input type="submit" value="Delete" class="btn btn-default" /> |
+                        @Html.ActionLink("Back to List", "Index")
+                    </div>
+                }
+            </div>
+            </div>
+        </div>
+</body>

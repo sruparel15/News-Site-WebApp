@@ -1,0 +1,174 @@
+﻿@model CreditTask2.Models.EmailModel
+
+@{
+    ViewBag.Title = "About";
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+    @Styles.Render("~/Content/css")
+    @Styles.Render("~/Content/themes/jquery.ui.all.css")
+    @Scripts.Render("~/bundles/modernizr")
+</head>
+
+
+<body>
+
+    <div class="jumbotronSpl">
+
+        <h4 style="text-align:center"><b><i>Send Email</i></b></h4>
+
+        <div>
+            @using (Html.BeginForm("Email", "Home", FormMethod.Post, new { enctype = "multipart/form-data" }))
+            {
+
+
+                <table>
+
+                    <tr>
+                        <td></td>
+                        <td>
+
+
+                            <div class="form-group">
+                                @Html.LabelFor(m => m.To, new { @class = "col-md-2 control-label" })
+                                <div class="col-md-10">
+                                    <select id="myJEmail" multiple="multiple" required name="myJEmailName">
+                                        @if (ViewBag.myJEmail != null)
+                                        {
+                                            foreach (var item in ViewBag.myJEmail)
+                                            {
+                                                if (item.Text != null)
+                                                {
+
+                                                    <option value="@item.Text">
+                                                        @item.Text
+                                                    </option>
+                                                }
+                                            }
+                                        }
+                                    </select>
+                                </div>
+                            </div>
+                            <br />
+                            <br />
+                            <input type="button" id="btnGetSkills" value="Load sent to List" />
+
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            Subject:
+                        </td>
+                        <td>
+                            @Html.TextBoxFor(model => model.Subject)
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            Body:
+                        </td>
+                        <td>
+                            @Html.TextAreaFor(model => model.Body, new { rows = "3", cols = "20" })
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            File Attachment:
+                        </td>
+                        <td>
+                            @Html.TextBoxFor(model => model.Attachment, new { type = "file" })
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            Adminstrator Email ID (Gmail):
+                        </td>
+                        <td>
+                            @Html.TextBoxFor(model => model.Email)
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            Adminstrator Email Password:
+                        </td>
+                        <td>
+                            @Html.TextBoxFor(model => model.Password, new { type = "password" })
+                        </td>
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <td>
+                            <input type="submit" value="Send" />
+                        </td>
+                    </tr>
+
+                </table>
+                <br />
+                <span style="color:green">@ViewBag.Message</span>
+
+            }
+           
+        </div>
+        <a href="/Home/Index">Go Home </a>
+
+
+        <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+        <link href="http://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.0.3/css/bootstrap.min.css"
+              rel="stylesheet" type="text/css" />
+        <script type="text/javascript" src="http://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.0.3/js/bootstrap.min.js"></script>
+        <link href="http://cdn.rawgit.com/davidstutz/bootstrap-multiselect/master/dist/css/bootstrap-multiselect.css"
+              rel="stylesheet" type="text/css" />
+        <script src="http://cdn.rawgit.com/davidstutz/bootstrap-multiselect/master/dist/js/bootstrap-multiselect.js"
+                type="text/javascript"></script>
+        <script type="text/javascript">
+
+
+                $(function () {
+                    $('#myJEmail').multiselect({
+                        includeSelectAllOption: true
+                    });
+
+                    $("#btnGetSkills").click(function () {
+                        var s = ($("#myJEmail").val())
+                        alert(s)
+                        myFunc(s)
+                    });
+                });
+
+
+                function myFunc(s)
+                {
+                    cookievalue = s + ";";
+                    document.cookie = "name=" + cookievalue;
+
+                }
+        </script>
+
+
+
+
+    </div>
+
+
+
+    @Scripts.Render("~/bundles/jqueryval")
+    @Scripts.Render("~/bundles/site")
+
+
+
+
+
+</body>
+</html>
+
+
+
+
+
+

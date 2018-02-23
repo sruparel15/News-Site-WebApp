@@ -1,0 +1,81 @@
+﻿@model CreditTask2.Models.Journalist
+
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<body style="margin-left:0px">
+    <div class="jumbotronSpl" style="margin-left:5px">
+
+        <h2>Details</h2>
+
+        <div class="form-horizontal">
+            <h4>Journalist</h4>
+            <hr />
+            <br />
+            <br />
+            <dl class="dl-horizontal">
+                <dt>
+                    @Html.DisplayNameFor(model => model.journFname)
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.journFname)
+                </dd>
+
+                <dt>
+                    @Html.DisplayNameFor(model => model.JournLname)
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.JournLname)
+                </dd>
+
+                <dt>
+                    @Html.DisplayNameFor(model => model.journDOB)
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.journDOB)
+                </dd>
+
+                <dt>
+                    @Html.DisplayNameFor(model => model.journContact)
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.journContact)
+                </dd>
+
+                <dt>
+                    @Html.DisplayNameFor(model => model.journEmail)
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.journEmail)
+                </dd>
+
+                <dt>
+                    @Html.DisplayNameFor(model => model.journCity)
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.journCity)
+                </dd>
+                <dt>
+
+                    <img class="img-thumbnail" src='@Url.Content("~/Uploads/" + Model.Journalist_Image)' height="100" width="100" />
+
+                </dt>
+                <dd>
+                    @Html.DisplayFor(model => model.Journalist_Image)
+                </dd>
+            </dl>
+        </div>
+        <p>
+            @Html.ActionLink("Edit", "Edit", new { id = Model.journId }) |
+            @Html.ActionLink("Back to List", "Index")
+        </p>
+    </div>
+</body>

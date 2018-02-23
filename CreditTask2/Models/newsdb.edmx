@@ -1,0 +1,163 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="NewsdbModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Articles">
+          <Key>
+            <PropertyRef Name="articleId" />
+          </Key>
+          <Property Name="articleId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="journId" Type="int" />
+          <Property Name="articleDate" Type="date" />
+          <Property Name="articleTopic" Type="varchar" MaxLength="50" />
+          <Property Name="articleTitle" Type="varchar" MaxLength="50" />
+          <Property Name="articleDesc" Type="varchar(max)" />
+        </EntityType>
+        <EntityType Name="Journalist">
+          <Key>
+            <PropertyRef Name="journId" />
+          </Key>
+          <Property Name="journId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="journFname" Type="varchar" MaxLength="50" />
+          <Property Name="JournLname" Type="varchar" MaxLength="50" />
+          <Property Name="journDOB" Type="date" />
+          <Property Name="journContact" Type="numeric" Precision="18" Scale="0" />
+          <Property Name="journEmail" Type="varchar(max)" />
+          <Property Name="journCity" Type="varchar" MaxLength="50" />
+          <Property Name="Journalist_Password" Type="nvarchar" MaxLength="256" />
+          <Property Name="Id_System" Type="nvarchar" MaxLength="200" />
+          <Property Name="Journalist_Image" Type="nvarchar" MaxLength="100" />
+        </EntityType>
+        <Association Name="FK_articles_journalist">
+          <End Role="Journalist" Type="Self.Journalist" Multiplicity="0..1" />
+          <End Role="Articles" Type="Self.Articles" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Journalist">
+              <PropertyRef Name="journId" />
+            </Principal>
+            <Dependent Role="Articles">
+              <PropertyRef Name="journId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="NewsdbModelStoreContainer">
+          <EntitySet Name="Articles" EntityType="Self.Articles" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Journalist" EntityType="Self.Journalist" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_articles_journalist" Association="Self.FK_articles_journalist">
+            <End Role="Journalist" EntitySet="Journalist" />
+            <End Role="Articles" EntitySet="Articles" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="NewsdbModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Article">
+          <Key>
+            <PropertyRef Name="articleId" />
+          </Key>
+          <Property Name="articleId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="journId" Type="Int32" />
+          <Property Name="articleDate" Type="DateTime" Precision="0" />
+          <Property Name="articleTopic" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="articleTitle" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="articleDesc" Type="String" FixedLength="false" Unicode="false" MaxLength="Max" />
+          <NavigationProperty Name="Journalist" Relationship="Self.FK_articles_journalist" FromRole="Articles" ToRole="Journalist" />
+        </EntityType>
+        <EntityType Name="Journalist">
+          <Key>
+            <PropertyRef Name="journId" />
+          </Key>
+          <Property Name="journId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="journFname" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="JournLname" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="journDOB" Type="DateTime" Precision="0" />
+          <Property Name="journContact" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="journEmail" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="journCity" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Articles" Relationship="Self.FK_articles_journalist" FromRole="Journalist" ToRole="Articles" />
+          <Property Name="Journalist_Password" Type="String" MaxLength="256" FixedLength="false" Unicode="true" />
+          <Property Name="Id_System" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="Journalist_Image" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <Association Name="FK_articles_journalist">
+          <End Role="Journalist" Type="Self.Journalist" Multiplicity="0..1" />
+          <End Role="Articles" Type="Self.Article" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Journalist">
+              <PropertyRef Name="journId" />
+            </Principal>
+            <Dependent Role="Articles">
+              <PropertyRef Name="journId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="NewsdbEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Articles" EntityType="Self.Article" />
+          <EntitySet Name="Journalists" EntityType="Self.Journalist" />
+          <AssociationSet Name="FK_articles_journalist" Association="Self.FK_articles_journalist">
+            <End Role="Journalist" EntitySet="Journalists" />
+            <End Role="Articles" EntitySet="Articles" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="NewsdbModelStoreContainer" CdmEntityContainer="NewsdbEntities">
+          <EntitySetMapping Name="Articles">
+            <EntityTypeMapping TypeName="NewsdbModel.Article">
+              <MappingFragment StoreEntitySet="Articles">
+                <ScalarProperty Name="articleId" ColumnName="articleId" />
+                <ScalarProperty Name="journId" ColumnName="journId" />
+                <ScalarProperty Name="articleDate" ColumnName="articleDate" />
+                <ScalarProperty Name="articleTopic" ColumnName="articleTopic" />
+                <ScalarProperty Name="articleTitle" ColumnName="articleTitle" />
+                <ScalarProperty Name="articleDesc" ColumnName="articleDesc" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Journalists">
+            <EntityTypeMapping TypeName="NewsdbModel.Journalist">
+              <MappingFragment StoreEntitySet="Journalist">
+                <ScalarProperty Name="Journalist_Image" ColumnName="Journalist_Image" />
+                <ScalarProperty Name="Id_System" ColumnName="Id_System" />
+                <ScalarProperty Name="Journalist_Password" ColumnName="Journalist_Password" />
+                <ScalarProperty Name="journId" ColumnName="journId" />
+                <ScalarProperty Name="journFname" ColumnName="journFname" />
+                <ScalarProperty Name="JournLname" ColumnName="JournLname" />
+                <ScalarProperty Name="journDOB" ColumnName="journDOB" />
+                <ScalarProperty Name="journContact" ColumnName="journContact" />
+                <ScalarProperty Name="journEmail" ColumnName="journEmail" />
+                <ScalarProperty Name="journCity" ColumnName="journCity" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
